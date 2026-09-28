@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CropAdvisor – Crop Disease &amp; Agricultural Advisory System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ===== LANDING SCREEN ===== -->
+<div id="landingScreen" class="landing">
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__row">
+        <div class="brand">
+          <div class="brand__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20v-8"/><path d="M12 12C9.5 8 11 4 15 2c-1 4-1 8-3 10z"/><path d="M12 12C8 12 5 10 4 6c4 0 7 2 8 6z"/></svg>
+          </div>
+          <div class="brand__text">
+            <span class="brand__name">CropAdvisor</span>
+            <span class="brand__sub">Crop Disease Query &amp; Agricultural Advisory System</span>
+          </div>
+        </div>
+        <div class="header-tag">SMART AGRICULTURE</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="landing__body">
+    <div class="container">
+      <section class="hero">
+        <span class="hero__badge">Spring Boot &bull; MySQL &bull; Role-Based Portals</span>
+        <h1 class="hero__title">Welcome to CropAdvisor</h1>
+        <p class="hero__sub">Connect farmers with agricultural officers for faster crop disease diagnosis and expert advisory support.</p>
+        <div class="hero__kicker">SELECT YOUR PORTAL</div>
+      </section>
+
+      <section class="portal-grid" aria-label="Portal selection">
+        <!-- FARMER CARD -->
+        <article class="portal-card">
+          <div class="portal-card__top"><span class="portal-pill portal-pill--farmer">FARMER</span></div>
+          <div class="portal-card__icon portal-card__icon--farmer" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20v-8"/><path d="M12 12C9.5 8 11 4 15 2c-1 4-1 8-3 10z"/><path d="M12 12C8 12 5 10 4 6c4 0 7 2 8 6z"/></svg>
+          </div>
+          <h2 class="portal-card__title">Farmer Portal</h2>
+          <p class="portal-card__desc">Raise crop disease and pest advisory tickets, track recommendations, and monitor resolution progress.</p>
+          <div class="field-group">
+            <label class="field-label" for="farmerSelect">Registered Farmer</label>
+            <div class="select-wrap">
+              <select id="farmerSelect" class="form-select" aria-describedby="farmerHelp">
+                <option value="">Loading farmers...</option>
+              </select>
+            </div>
+            <p id="farmerHelp" class="field-help">Select a farmer to continue</p>
+          </div>
+          <div id="farmerPreview" class="preview-box">
+            <div class="preview-empty">Select a farmer to view region and contact details.</div>
+          </div>
+          <button id="farmerEnterBtn" class="btn btn--primary btn--full" type="button" disabled>Enter Farmer Portal &rarr;</button>
+        </article>
+
+        <!-- OFFICER CARD -->
+        <article class="portal-card">
+          <div class="portal-card__top"><span class="portal-pill portal-pill--officer">AGRICULTURAL OFFICER</span></div>
+          <div class="portal-card__icon portal-card__icon--officer" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h2 class="portal-card__title">Officer Portal</h2>
+          <p class="portal-card__desc">Review assigned crop queries, provide expert recommendations, close resolved tickets, and monitor escalations.</p>
+          <div class="field-group">
+            <label class="field-label" for="officerSelect">Agricultural Officer</label>
+            <div class="select-wrap">
+              <select id="officerSelect" class="form-select" aria-describedby="officerHelp">
+                <option value="">Loading officers...</option>
+              </select>
+            </div>
+            <p id="officerHelp" class="field-help">Select an officer to continue</p>
+          </div>
+          <div id="officerPreview" class="preview-box">
+            <div class="preview-empty">Select an officer to view specialization and jurisdiction.</div>
+          </div>
+          <button id="officerEnterBtn" class="btn btn--primary btn--full" type="button" disabled>Enter Officer Portal &rarr;</button>
+        </article>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- ===== FARMER PORTAL ===== -->
+<div id="farmerPortal" class="app-shell hidden">
+  <aside id="farmerSidebar" class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">CA</div>
+      <div><div class="sidebar__title">CropAdvisor</div><div class="sidebar__sub">Farmer Portal</div></div>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="nav-btn is-active" data-role="FARMER" data-view="dashboard" type="button">Dashboard</button>
+      <button class="nav-btn" data-role="FARMER" data-view="tickets" type="button">My Tickets</button>
+      <button class="nav-btn" data-role="FARMER" data-view="raise" type="button">Raise Advisory</button>
+      <button class="nav-btn" data-role="FARMER" data-view="profile" type="button">Profile</button>
+    </nav>
+    <div class="sidebar__footer">
+      <button id="farmerLogout" class="btn btn--ghost btn--full" type="button">Logout</button>
+    </div>
+  </aside>
+  <div class="main-area">
+    <header class="topbar">
+      <button id="farmerMenuBtn" class="menu-btn mobile-only" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <div class="topbar__left"><div class="topbar__eyebrow">Farmer Portal</div><h2 id="farmerTopTitle">Dashboard</h2></div>
+      <div id="farmerTopMeta" class="topbar__meta"></div>
+    </header>
+    <main class="content">
+      <section id="fv-dashboard" class="view-panel">
+        <div class="welcome-strip"><h1 id="fWelcomeName">Welcome back</h1><p>Manage your crop advisory requests and recommendations.</p></div>
+        <div id="fStats" class="stats-grid"></div>
+        <div class="card"><div class="card__header"><h3>Recent Tickets</h3><p>Your latest advisory activity.</p></div><div id="fRecentTable" class="card__body table-wrap"></div></div>
+      </section>
+      <section id="fv-tickets" class="view-panel hidden">
+        <div class="section-top"><div><h3>My Tickets</h3><p>Track status, escalation, and officer recommendations.</p></div><button class="btn btn--primary btn--sm" data-role="FARMER" data-view="raise" type="button">+ Raise Advisory</button></div>
+        <div class="card"><div id="fAllTickets" class="card__body table-wrap"></div></div>
+      </section>
+      <section id="fv-raise" class="view-panel hidden">
+        <div class="section-top"><div><h3>Raise Advisory Ticket</h3><p>Submit a crop disease query for expert assistance.</p></div></div>
+        <div class="card card--padded">
+          <div id="farmerCtx" class="context-bar"></div>
+          <form id="raiseForm" class="form-stack">
+            <div class="field-group"><label class="field-label" for="cropInput">Crop Name *</label><input id="cropInput" class="form-input" type="text" placeholder="e.g. Paddy, Tomato, Cotton" required></div>
+            <div class="field-group"><label class="field-label" for="symptomsInput">Symptoms / Description *</label><textarea id="symptomsInput" class="form-input form-textarea" rows="4" placeholder="Describe the disease symptoms, affected area, and severity..." required></textarea></div>
+            <div class="field-group"><label class="field-label" for="photoInput">Photo URL (Optional)</label><input id="photoInput" class="form-input" type="url" placeholder="https://example.com/crop-photo.jpg"></div>
+            <button id="raiseBtn" class="btn btn--primary btn--full" type="submit">Submit Advisory Ticket</button>
+          </form>
+        </div>
+      </section>
+      <section id="fv-profile" class="view-panel hidden">
+        <div class="section-top"><div><h3>Profile</h3><p>Registered farmer and regional contact information.</p></div></div>
+        <div id="fProfile" class="card card--padded"></div>
+      </section>
+    </main>
+  </div>
+  <div id="farmerOverlay" class="sidebar-overlay"></div>
+</div>
+
+<!-- ===== OFFICER PORTAL ===== -->
+<div id="officerPortal" class="app-shell hidden">
+  <aside id="officerSidebar" class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">CA</div>
+      <div><div class="sidebar__title">CropAdvisor</div><div class="sidebar__sub">Officer Portal</div></div>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="nav-btn is-active" data-role="OFFICER" data-view="dashboard" type="button">Dashboard</button>
+      <button class="nav-btn" data-role="OFFICER" data-view="tickets" type="button">Assigned Tickets</button>
+      <button class="nav-btn" data-role="OFFICER" data-view="escalated" type="button">Escalated Tickets</button>
+      <button class="nav-btn" data-role="OFFICER" data-view="profile" type="button">Profile</button>
+    </nav>
+    <div class="sidebar__footer">
+      <button id="officerLogout" class="btn btn--ghost btn--full" type="button">Logout</button>
+    </div>
+  </aside>
+  <div class="main-area">
+    <header class="topbar">
+      <button id="officerMenuBtn" class="menu-btn mobile-only" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <div class="topbar__left"><div class="topbar__eyebrow">Officer Portal</div><h2 id="officerTopTitle">Dashboard</h2></div>
+      <div id="officerTopMeta" class="topbar__meta"></div>
+    </header>
+    <main class="content">
+      <section id="ov-dashboard" class="view-panel">
+        <div class="welcome-strip welcome-strip--officer"><h1 id="oWelcomeName">Welcome</h1><p>Review assigned cases and provide expert agricultural advisory.</p></div>
+        <div id="oStats" class="stats-grid"></div>
+        <div class="card"><div class="card__header"><h3>Recent Assigned Tickets</h3><p>Cases currently mapped to your account.</p></div><div id="oRecentTable" class="card__body table-wrap"></div></div>
+      </section>
+      <section id="ov-tickets" class="view-panel hidden">
+        <div class="section-top"><div><h3>Assigned Tickets</h3><p>Review symptoms, update recommendations, and close resolved tickets.</p></div></div>
+        <div class="card"><div id="oAllTickets" class="card__body table-wrap"></div></div>
+      </section>
+      <section id="ov-escalated" class="view-panel hidden">
+        <div class="section-top"><div><h3>Escalated Tickets</h3><p>High-priority cases pending more than 48 hours.</p></div></div>
+        <div class="card card--warning"><div id="oEscalatedTable" class="card__body table-wrap"></div></div>
+      </section>
+      <section id="ov-profile" class="view-panel hidden">
+        <div class="section-top"><div><h3>Profile</h3><p>Officer specialization and jurisdiction details.</p></div></div>
+        <div id="oProfile" class="card card--padded"></div>
+      </section>
+    </main>
+  </div>
+  <div id="officerOverlay" class="sidebar-overlay"></div>
+</div>
+
+<!-- ===== TICKET DETAIL MODAL ===== -->
+<div id="ticketModal" class="modal-overlay hidden" aria-hidden="true">
+  <div class="modal modal--lg" role="dialog" aria-modal="true" aria-labelledby="tmTitle">
+    <div class="modal__header"><h3 id="tmTitle">Ticket Details</h3><button id="tmClose" class="modal__close" type="button" aria-label="Close">&times;</button></div>
+    <div id="tmBody" class="modal__body"></div>
+    <div id="tmFooter" class="modal__footer"></div>
+  </div>
+</div>
+
+<!-- ===== RECOMMENDATION MODAL ===== -->
+<div id="recoModal" class="modal-overlay hidden" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="recoTitle">
+    <div class="modal__header"><h3 id="recoTitle">Add Recommendation</h3><button id="recoClose" class="modal__close" type="button" aria-label="Close">&times;</button></div>
+    <div class="modal__body">
+      <p id="recoInfo" class="modal__note"></p>
+      <div class="field-group"><label class="field-label" for="recoText">Recommendation *</label><textarea id="recoText" class="form-input form-textarea" rows="5" placeholder="Enter diagnosis, recommended treatment, and advisory steps..." required></textarea></div>
+    </div>
+    <div class="modal__footer">
+      <button id="recoCancel" class="btn btn--secondary" type="button">Cancel</button>
+      <button id="recoSubmit" class="btn btn--primary" type="button">Submit Recommendation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOASTS ===== -->
+<div id="toastRack" class="toast-rack" aria-live="polite"></div>
+
+<script src="/js/app.js" defer></script>
+</body>
+</html>
