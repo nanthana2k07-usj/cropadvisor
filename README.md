@@ -1,4 +1,3 @@
-```markdown
 # CropAdvisor 🌱
 
 ## Crop Disease Query and Advisory Ticketing System
