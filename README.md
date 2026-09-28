@@ -611,29 +611,3 @@ This project currently does not specify an open-source license.
 ## 👨‍💻 Author
 
 **Nanthana Uthayakumar**
-
-### CropAdvisor
-
-**Crop Disease Query and Advisory Ticketing System**
-```
-
-**For the screenshots**, create this folder in your project:
-
-```text
-cropadvisor
-└── screenshots
-    ├── landing-page.png
-    ├── farmer-dashboard.png
-    ├── raise-advisory.png
-    ├── officer-dashboard.png
-    ├── ticket-details.png
-    └── escalated-ticket.png
-```
-
-Then push:
-
-```powershell
-git add README.md screenshots
-git commit -m "Add README and application screenshots"
-git push
-```
